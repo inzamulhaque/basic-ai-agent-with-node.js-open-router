@@ -14,4 +14,24 @@ async function main() {
 
   console.log(completion.choices[0].message);
 }
-main();
+// main();
+
+const analyzwGoal = async () => {
+  const goalText = "Learn Python";
+  const duration = " 7 days";
+
+  const propmt = `User want to ${goalText} in ${duration}. Analyze the goal and break it down into smaller steps. return as JSON output`;
+
+  try {
+    const completion = await openai.chat.completions.create({
+      model: "stepfun/step-3.5-flash:free",
+      messages: [{ role: "user", content: propmt }],
+    });
+
+    console.log(completion.choices[0].message);
+  } catch (error) {
+    log("Error analyzing goal:", error);
+  }
+};
+
+analyzwGoal();
