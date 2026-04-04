@@ -25,7 +25,15 @@ const analyzwGoal = async () => {
   try {
     const completion = await openai.chat.completions.create({
       model: "stepfun/step-3.5-flash:free",
-      messages: [{ role: "user", content: propmt }],
+      messages: [
+        {
+          role: "system",
+          content:
+            "You are an expert in personal productivity coach and learning specialist.",
+        },
+        { role: "user", content: propmt },
+      ],
+      temperature: 0.7,
     });
 
     console.log(completion.choices[0].message);
