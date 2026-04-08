@@ -20,7 +20,22 @@ const analyzeGoal = async (goalText, duration) => {
   // const goalText = "Learn Python";
   // const duration = " 7 days";
 
-  const propmt = `User want to ${goalText} in ${duration}. Analyze the goal and break it down into smaller steps. return as JSON output`;
+  const propmt = `User wants to ${goalText} within ${duration} days. 
+    create a structured learning/execution plan with:
+    1. main milestones for each week.
+    2. success matrices
+    3. potential challenges
+    4. motivational approch
+
+    Return as JSON with this structure:
+    {
+      "milestones": ["milestone1", "milestone2", "milestone3"],
+      "dailyTasks": [{"day": 1, "title": "....", "description": "..."}],
+      "successMetrics": ["metric 1", "metric 2", "metric 3"],
+      "challenges": ["challenge 1"],
+      "motivationalApproach": "...."
+    } 
+  `;
 
   try {
     const completion = await openai.chat.completions.create({
@@ -41,6 +56,8 @@ const analyzeGoal = async (goalText, duration) => {
 
     const content = completion.choices[0].message.content;
     const jsonMatch = content.match(/\{[\s\S]*\}/);
+
+    console.log(jsonMatch);
 
     // if (jsonMatch) {
     //   return JSON.parse(jsonMatch);

@@ -2,6 +2,7 @@ require("dotenv").config();
 const express = require("express");
 const cors = require("cors");
 const { analyzeGoal } = require("./ai-agents");
+const storage = require("./storage");
 
 const app = express();
 const PORT = process.env.PORT || 5000;
@@ -23,10 +24,30 @@ app.post("/api/goals", async (req, res) => {
 
     const plan = await analyzeGoal(goalText, duration);
 
+    console.log({ plan });
+
+    if (plan) {
+      const goal = storage.saveGoal({
+        title: goalText,
+        duration,
+        plan,
+        status: "active",
+      });
+
+      const tasks = storage.saveTasks(goal?.id, plan?.dailyTasks);
+
+      storage.saveProgress(goal.id, {
+        goalId: goal.id,
+        completedTasks: 0,
+        totalTasks: tasks.length,
+        progressParcentage: 0,
+      });
+    }
+
     res.status(200).json({ plan });
   } catch (error) {
     console.error(error);
-    res.status(500).json({ error: "Internal server error" });
+    res.status(500).json({ error: "Internal server error!" });
   }
 });
 
