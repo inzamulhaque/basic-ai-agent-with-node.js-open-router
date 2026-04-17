@@ -51,6 +51,26 @@ app.post("/api/goals", async (req, res) => {
   }
 });
 
+app.post("/api/goals/:goalId/evaluate", async (req, res) => {
+  try {
+    const { goalId } = req.params;
+    const goal = storage.getGoal(goalId);
+
+    if (!goal) {
+      return res.status(404).json({ error: "Goal not found!" });
+    }
+
+    const tasks = storage.getTasksByGoal(goalId);
+    const completedTasks = tasks.filter((task) => task.completed).length;
+    const createDays = Math.ceil(
+      (Date.now() - new Date(goal.createdAt)) / (1000 * 60 * 60 * 24),
+    );
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ error: "Internal server error!" });
+  }
+});
+
 // ============ SERVER START ============
 
 app.listen(PORT, () => {

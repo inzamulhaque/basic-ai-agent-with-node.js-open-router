@@ -61,5 +61,32 @@
     "description": "• Choose one of the following (≈150‑200 lines total):\n   1. **Todo CLI** – add, list, complete, and delete tasks saved in a JSON file.\n   2. **Currency Converter** – fetch live rates via an API, store history, and allow conversions.\n   3. **Simple Quiz Game** – load questions from a CSV, track score, and write results to a file.\n• Apply all learned concepts: functions, modules, file I/O, error handling, and external libraries.\n• Test thoroughly and write a short README describing usage.\n• Celebrate completion!",
     "completed": false,
     "createdAt": "2026-04-08T13:12:15.828Z"
+  },
+  {
+    "id": "1776421389777-0-1776421389798",
+    "goalId": "1776421389777",
+    "day": 1,
+    "title": "Web Foundations & HTML",
+    "description": "• Install VS Code, Git, Node.js, and a browser (Chrome/Firefox). \n• Watch a 30‑minute intro video on how the Internet works (client‑server, HTTP, DNS). \n• Follow a hands‑on tutorial to create a static page: structure with semantic HTML tags (header, nav, main, footer). \n• Practice: Build a personal‑profile page containing a heading, image, list of skills, and contact links.\n• Quick Quiz: 10 flash‑card questions on HTML element purposes.",
+    "completed": false,
+    "createdAt": "2026-04-17T10:23:09.798Z"
+  },
+  {
+    "id": "1776421389777-1-1776421389798",
+    "goalId": "1776421389777",
+    "day": 2,
+    "title": "CSS & Intro to JavaScript",
+    "description": "• Review CSS basics: selectors, box model, display, positioning. \n• Follow a guided tutorial to style the Day‑1 profile page: typography, colors, flexbox layout, responsive breakpoints (mobile‑first). \n• Intro JavaScript (30‑min video + 2‑hour coding): variables, data types, functions, events, DOM manipulation. \n• Mini‑exercise: Add a “Show More / Show Less” button that toggles extra content on the profile page.\n• Deploy the styled page to GitHub Pages (free static hosting).",
+    "completed": false,
+    "createdAt": "2026-04-17T10:23:09.798Z"
+  },
+  {
+    "id": "1776421389777-2-1776421389798",
+    "goalId": "1776421389777",
+    "day": 3,
+    "title": "Mini Full‑Stack Project & Deployment",
+    "description": "• Project Scope (2‑hour): Build a simple “To‑Do List” web app.\n   - HTML: input field, add button, list container.\n   - CSS: clean, responsive design using Flexbox/Grid.\n   - JavaScript: add, delete, toggle‑complete items; persist data in localStorage.\n• Step‑by‑step coding (follow a fast‑track tutorial, then refactor on your own). \n• Testing: verify functionality on desktop & mobile browsers.\n• Deploy: push to GitHub, enable GitHub Pages, share the live URL.\n• Reflection: Write a 200‑word summary of what you learned, what was hardest, and next topics (e.g., APIs, frameworks).",
+    "completed": false,
+    "createdAt": "2026-04-17T10:23:09.798Z"
   }
 ]
