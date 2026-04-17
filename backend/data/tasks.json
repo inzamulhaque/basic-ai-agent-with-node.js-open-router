@@ -23,7 +23,7 @@
     "day": 3,
     "title": "Collections – Lists & Tuples",
     "description": "• Create, index, slice, and iterate over lists\n• List methods (`append`, `pop`, `sort`, comprehensions)\n• Immutable tuples and when to use them\n• Mini‑exercise: read a CSV‑style string and compute column statistics",
-    "completed": false,
+    "completed": true,
     "createdAt": "2026-04-08T13:12:15.828Z"
   },
   {
@@ -32,7 +32,7 @@
     "day": 4,
     "title": "Dictionaries, Sets & Functions",
     "description": "• Dictionaries: creation, lookup, iteration, `dict.get`\n• Sets: uniqueness, basic operations (`union`, `intersection`)\n• Define functions, default arguments, `*args`/`**kwargs`\n• Scope & the `global` keyword\n• Practice: build a phone‑book lookup using a dictionary",
-    "completed": false,
+    "completed": true,
     "createdAt": "2026-04-08T13:12:15.828Z"
   },
   {
@@ -41,7 +41,7 @@
     "day": 5,
     "title": "Modules, Packages & File I/O",
     "description": "• Importing standard modules (`math`, `random`, `datetime`)\n• Creating your own module and using `__name__ == \"__main__\"`\n• Reading/writing text files with `with open(...) as f`\n• CSV handling via `csv` module\n• Exercise: write a script that logs daily expenses to a CSV file",
-    "completed": false,
+    "completed": true,
     "createdAt": "2026-04-08T13:12:15.828Z"
   },
   {

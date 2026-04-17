@@ -1,7 +1,7 @@
 require("dotenv").config();
 const express = require("express");
 const cors = require("cors");
-const { analyzeGoal } = require("./ai-agents");
+const { analyzeGoal, evaluateProgress } = require("./ai-agents");
 const storage = require("./storage");
 
 const app = express();
@@ -65,6 +65,15 @@ app.post("/api/goals/:goalId/evaluate", async (req, res) => {
     const createDays = Math.ceil(
       (Date.now() - new Date(goal.createdAt)) / (1000 * 60 * 60 * 24),
     );
+
+    const evaluation = await evaluateProgress(
+      goal,
+      completedTasks,
+      tasks.length,
+      createDays,
+    );
+
+    res.status(200).json({ evaluation });
   } catch (error) {
     console.error(error);
     res.status(500).json({ error: "Internal server error!" });

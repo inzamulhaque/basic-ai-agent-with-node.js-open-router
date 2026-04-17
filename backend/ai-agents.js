@@ -70,16 +70,15 @@ const analyzeGoal = async (goalText, duration) => {
 };
 
 const evaluateProgress = async (goal, completedTasks, totalTasks, days) => {
-  try {
-    const completionRate = ((completedTasks / totalTasks) * 100).toFixed(2);
-    const expectedRate = ((days / goal.duration) * 100).toFixed(2);
-    const onTrack = completionRate >= expectedRate - 10; // Allowing a 10% margin
+  const completionRate = ((completedTasks / totalTasks) * 100).toFixed(2);
+  const expectedRate = ((days / goal.duration) * 100).toFixed(2);
+  const onTrack = completionRate >= expectedRate - 10; // Allowing a 10% margin
 
-    const prompt = `Learning Goal: ${goal.title}
-  Duration: ${goal.durationDays} days
+  const prompt = `Learning Goal: ${goal.title}
+  Duration: ${goal.duration} days
   Days Elapsed: ${days} days
-  Task Completion Rate: ${completionRate}  
-  Expected Task completion rate: ${expectedRate}
+  Task Completion Rate: ${completionRate}%
+  Expected Task completion rate: ${expectedRate}%
   status: ${onTrack ? "ON TRACK" : "BEHIND"}
 
   Generate: 
@@ -96,6 +95,27 @@ const evaluateProgress = async (goal, completedTasks, totalTasks, days) => {
     "tip": "....."
   }
   `;
+
+  try {
+    const response = await openai.chat.completions.create({
+      model: "openai/gpt-oss-120b:free",
+      messages: [
+        {
+          role: "system",
+          content:
+            "You are a supportive and smart productivity coach. Be encouraging but honest. Adapt your tone based on progress.",
+        },
+        { role: "user", content: prompt },
+      ],
+      temperature: 0.7,
+    });
+
+    const content = response.choices[0].message.content;
+    const jsonMatch = content.match(/\{[\s\S]*\}/);
+
+    if (jsonMatch) {
+      return JSON.parse(jsonMatch);
+    }
   } catch (error) {
     console.error("Error analyzing goal:", error);
   }
