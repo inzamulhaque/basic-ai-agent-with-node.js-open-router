@@ -18,7 +18,7 @@ const openai = new OpenAI({
 
 const analyzeGoal = async (goalText, duration) => {
   // const goalText = "Learn Python";
-  // const duration = " 7 days";
+  // const duration = 7;
 
   const propmt = `User wants to ${goalText} within ${duration} days. 
     create a structured learning/execution plan with:
@@ -69,4 +69,36 @@ const analyzeGoal = async (goalText, duration) => {
   }
 };
 
-module.exports = { analyzeGoal };
+const evaluateProgress = async (goal, completedTasks, totalTasks, days) => {
+  try {
+    const completionRate = ((completedTasks / totalTasks) * 100).toFixed(2);
+    const expectedRate = ((days / goal.duration) * 100).toFixed(2);
+    const onTrack = completionRate >= expectedRate - 10; // Allowing a 10% margin
+
+    const prompt = `Learning Goal: ${goal.title}
+  Duration: ${goal.durationDays} days
+  Days Elapsed: ${days} days
+  Task Completion Rate: ${completionRate}  
+  Expected Task completion rate: ${expectedRate}
+  status: ${onTrack ? "ON TRACK" : "BEHIND"}
+
+  Generate: 
+  1. Performance analysis
+  2. Specific encouragement 
+  3. Recommend next action (just 1-3 lines)
+  4. Weekly tips
+
+  Return as JSON: 
+  {
+    "analysis": ".....",
+    "encourgement": ".....",
+    "nextAction": ".....",
+    "tip": "....."
+  }
+  `;
+  } catch (error) {
+    console.error("Error analyzing goal:", error);
+  }
+};
+
+module.exports = { analyzeGoal, evaluateProgress };
